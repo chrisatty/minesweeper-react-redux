@@ -39,7 +39,7 @@ class GameForm extends Component {
     if (value === '') {
       return "error";
     }
-    return (value >= 10 && value <= 100) ? "success" : "error";
+    return (value >= 10 && value <= 50) ? "success" : "error";
   }
 
   getMineValidation() {
@@ -64,7 +64,7 @@ class GameForm extends Component {
            <FormControl
              type="text"
              value={this.state.width}
-             placeholder="Width must be between 10 and 100"
+             placeholder="Width must be between 10 and 50"
              onChange={(event) => this.handleInputChange(event)}
              name="width"
            />
@@ -79,7 +79,7 @@ class GameForm extends Component {
            <FormControl
              type="text"
              value={this.state.height}
-             placeholder="Height must be between 10 and 100"
+             placeholder="Height must be between 10 and 50"
              onChange={(event) => this.handleInputChange(event)}
              name="height"
            />
