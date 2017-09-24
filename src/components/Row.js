@@ -8,7 +8,7 @@ class Row extends Component {
    return (
        <div className="row">
         {[...Array(this.props.noCells).keys()].map(index => (
-           <CellContainer x={this.props.rowIndex} y={index} key={index} />
+           <CellContainer x={index} y={this.props.rowIndex} key={index} />
         ))}
        </div>
     );

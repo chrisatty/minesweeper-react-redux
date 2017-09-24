@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Glyphicon } from 'react-bootstrap'
 import { CellState, GameStatus } from '../Constants'
 import * as Utils from '../Utils'
+import classNames from 'classnames'
 
 class Cell extends Component {
 
@@ -14,25 +15,24 @@ class Cell extends Component {
 
   render() {
     let content = '-';
-    let icon = 'cell';
+    const classes = { cell: true };
     if (this.props.isMine && Utils.gameComplete(this.props.gameStatus)) {
+      classes.mine = true;
       if (this.props.gameStatus === GameStatus.LOST) {
         content = <Glyphicon glyph="remove" />;
-        icon += ' mine';
       } else {
         content = <Glyphicon glyph="flag" />;
-        icon += ' mine';
       }
     } else if (this.props.cellState === CellState.OPENED) {
-      icon += ' number-' + this.props.adjacentMines;
+      classes[' number-' + this.props.adjacentMines] = true;
       content = this.props.adjacentMines;
     } else if (this.props.cellState === CellState.FLAGGED) {
-      icon += ' flag'
+      classes.flag = true;
       content = <Glyphicon glyph="flag" />;
     } else {
-      icon += ' unknown'
+      classes.unknown = true;
     }
-    return <span className={icon} onContextMenu={(e) => this.onRightClick(e)} onClick={() => this.props.onOpen()}>{content}</span>
+    return <span className={classNames(classes)} onContextMenu={(e) => this.onRightClick(e)} onClick={() => this.props.onOpen()}>{content}</span>
   }
 }
 
